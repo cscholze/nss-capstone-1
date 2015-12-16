@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
+  <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-nav" aria-expanded="false">
@@ -28,26 +28,53 @@
 </nav>
 
 <div class="container view-chart-container">
-  <div class="row">
-    <div class="col-md-8">
+  <div class="row text-center">
+    <div class="col-sm-8">
       <h2>{{viewChartsCtrl.currChart.title}}</h2>
       <h3>{{viewChartsCtrl.currChart.artist}}</h3>
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-sm-8">
+  <div class="row" id="displayed-chart">
+    <div class="col-md-8">
       <pre>{{viewChartsCtrl.currChart.preText}}</pre>
     </div>
-    <div id="sidebar-wrapper" class="col-sm-4">
-      <input size="40">
-      <button role="button" class="btn btn-default" onclick="jtab.render($('#tab'),$('#user_notation').val());">Show Chord</button>
-      <div id="tab" clas="rendered"></div>
-      <script type="text/javascript">
-        $('#user_notation').keyup(function(e){
-           jtab.render($('#tab'),$(this).val());
-        });
-      </script>
+
+    <div id="sidebar-wrapper" class="col-md-4">
+      <div class="chord-finder">
+      <h3>Search chord diagrams</h3>
+        <input id="user_notation" type="text" size="40" placeholder="e.g. C Gm F#7 Db">
+        <div id="tab" class="rendered"></div>
+        <script type="text/javascript">
+          $('#user_notation').keyup(function(e){
+              console.log("keypress",e);
+             jtab.render($('#tab'),$(this).val());
+          });
+        </script>
+      </div>
+    
+      <h5>Chord Notation</h5>
+      <ul>
+        <li>The root note (A..G) must be uppercase</li>
+        <li>Seperate every item with spaces</li>
+        <li># indicates sharp</li>
+        <li>b (lowercase B) indicates flat</li>
+        <li>m (lowercase) indicates minor</li>
+        <li>maj (lowercase) indicates major</li>
+        <li>sus (lowercase) indicates suspended</li>
+        <li>dim (lowercase) indicates diminished</li>
+        <li>aug (lowercase) indicates augmented</li>
+        <li>add (lowercase) indicates extensions</li>
+      </ul>
+      <ul>
+        <li>Variations on the root chord: m, 6, m6, 69, 7, m7, maj7, 7b5, 7#5, m7b5, 7b9, 9, m9, maj9, add9, 13, sus2, sus4, dim, dim7, aug</li>
+      </ul>
+      <ul>
+        <li>Search supports CAGED major chord notation. This is a convenient method for indicating major chords at various positions on the fretboard.</li>
+        <li>May be applied to all chords</li>
+        <li>Position is indicated by following the chord with a colon and the position number 1,2,3...</li>
+        <li>e.g. C:1, Cm7:5, Eaug:2, Dsus2:3</li>
+      </ul>
     </div>
   </div>
 </div>

@@ -7,7 +7,23 @@ app.controller("createChartController",
     // ref to firebase app, used for saving.
   	var appRef = new Firebase("https://jcsdevnsscapstone1.firebaseio.com");
 
-/************ newChart model **************/
+/************ Setup seesion storage to cache charts befored being save *************/
+var hasSessStorage = false;
+// Check for browser storage support
+if(typeof(Storage) !== "undefined") {
+    // Code for localStorage/sessionStorage.
+    hasStorage = true;
+    console.log("hasStorage", hasStorage);
+    vm.newChart = {
+      title: sessionStorage.draftTitle,
+      artist: sessionStorage.draftArtist,
+      createdBy: "",
+      chartHTML: "",
+      preText: sessionStorage.draftPreText
+    };
+} else {
+    // Sorry! No Web Storage support.
+    hasStorage = false;
   	vm.newChart = {
   		title: "",
   		artist: "",
@@ -15,6 +31,17 @@ app.controller("createChartController",
       chartHTML: "",
       preText: ""
     };
+}
+
+/************ newChart model **************/
+
+    // reload draft changes from session storage if it exists
+    console.log("reloading previous work");
+    if(hasStorage && localStorage.chartDraft) {
+      vm.newChart.title = localStorage.draftTitle;
+      vm.newChart.artist = localStorage.draftArtist;
+      vm.newChart.preText = localStorage.draftPreText;
+    }
 
 /********* saveChart method ************/
   	vm.saveChart = function() {
@@ -42,14 +69,27 @@ app.controller("createChartController",
 			});
   	};
 
-/************ addChord method *************/
-    vm.addChord = function() {
-      console.log("calling addChord...");
-      var classApplier = rangy.createClassApplier("chord", {
-        tagNames: ["span"],
-        normalize: true
-      });
-      console.log("classApplier", classApplier);
-       classApplier.toggleSelection(); 
+/************ autoSave method *************/
+    vm.autoSave = function() {
+      console.log("auto saving your work...");
+      if(hasStorage) {
+        sessionStorage.draftTitle = vm.newChart.title;
+        sessionStorage.draftArtist = vm.newChart.Artist;
+        sessionStorage.draftPreText = vm.newChart.preText;
+      }
+      else {
+        alert("Your changes will are not being saved!");
+      }
     };
+
+/************ addChord method *************/
+    // vm.addChord = function() {
+    //   console.log("calling addChord...");
+    //   var classApplier = rangy.createClassApplier("chord", {
+    //     tagNames: ["span"],
+    //     normalize: true
+    //   });
+    //   console.log("classApplier", classApplier);
+    //    classApplier.toggleSelection(); 
+    // };
 }]);

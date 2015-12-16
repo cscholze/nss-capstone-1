@@ -1,3 +1,23 @@
+// Global styles
+body { 
+    padding-bottom: 70px;
+    padding-top: 50px;
+    background-color: #222;
+    color: black;
+}
+.btn a {
+    text-decoration: none;
+    color: black;
+}
+.navbar-fixed-bottom {
+    height: 50px;
+}
+.pager {
+    margin-top: 10px;
+}
+/****************************************************/
+
+// Splash/login styles
 #splash-login {
     background-color: black;
     color: white;
@@ -10,43 +30,62 @@
 #form-login {
     padding: 10px 30px;
 }
-.btn a {
-    text-decoration: none;
-    color: black;
-}
-body { 
-    padding-bottom: 70px;
-    padding-top: 50px;
-    background-color: #222;
-    color: black;
-}
+/****************************************************/
+
+// Main menu styles
 #main-menu {
     text-align: center;
     font-size: 1.5em;
-    color: white;
+    display: block;
+    color: #eee;
+}
+#menu-title {
+    font-size: 2em;
+    margin-top: -50px;
+    background-color: #bbb;
+    color: #222;
+    padding: 10px;
 }
 .menu-items {
-    background-color: #555;
-    margin: 0 auto;
+    margin-top: 30px;
+}
+.main-menu-btn {
+    border-radius: 10px;
+    color: #222;
+    max-width: 400px;
+    min-width: 360px;
+    height: 100px;
+}
+.main-menu-btn:hover {
+    background-color: #444;
+    color: #eee;
+}
+.main-menu-link {
     display: block;
 }
-.main-menu-item {
-    margin-bottom: 20px;
-    width: 400px;
-    display: block;
-    text-decoration: none;
-    color: black;
+.main-menu-link:hover {
 }
+/****************************************************/
+
+// View chart styles
 .view-chart-container {
-    max-width: 560px;
-    min-width: 300px;
     font-size: 0.8em;
     color: white;
+}
+#displayed-chart {
+    min-width: 560px;
 }
 #chord-finder {
     color: black;
 }
+#user_notation {
+    color: black;
+}
+/****************************************************/
+
+// Create chart styles
 .create-chart-container {
+    margin-top: 20px;
     min-width: 560px;
 }
 .chart-info-form input {
