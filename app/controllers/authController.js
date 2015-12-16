@@ -9,7 +9,6 @@ app.controller("authController", ["$firebaseAuth", "$location",
   	// Create global auth object for app
     var ref = new Firebase("https://jcsdevnsscapstone1.firebaseio.com");
     var authObj = $firebaseAuth(ref);
-    console.log("authObj", authObj);
 
     // Register and login new user with email/password
     vm.registerNewUser = function() {
@@ -55,11 +54,12 @@ app.controller("authController", ["$firebaseAuth", "$location",
 
     // Logout user
     vm.logout = function() {
-    	console.log("calling logout...");
+    	console.log("calling logout and unauthorizing...");
+    	authObj.$unauth();
     	sessionStorage.clear();
-    	console.log("sessionStorage", sessionStorage);
+    	console.log("clearing sessionStorage", sessionStorage);
     	localStorage.clear();
-    	console.log("localStorage", localStorage);
+    	console.log("clearinglocalStorage", localStorage);
     };
   }
 ]);

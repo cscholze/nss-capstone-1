@@ -1,5 +1,5 @@
 // Instantiate main app and module
-var app = angular.module("nss-capstone-1", ['ngRoute','firebase','textAngular']);
+var app = angular.module("nss-capstone-1", ['ngRoute','firebase']);
 
 
 // App config
@@ -26,8 +26,8 @@ app.config(['$routeProvider','$provide',
         controller: 'viewChartsController',
         controllerAs: 'viewChartsCtrl'
       })
-      .when('/chordFinder', {
-        templateUrl: 'partials/chord-finder.html',
+      .when('/chordLibrary', {
+        templateUrl: 'partials/chord-library.html',
         controller: '',
         controllerAs: ''
       })

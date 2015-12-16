@@ -8,7 +8,7 @@
 			<a class="main-menu-link" href="/#/viewCharts">
 				<button role="button" class="main-menu-btn">View Charts</button>
 			</a>
-			<a class="main-menu-link" href="/#/chordFinder">
+			<a class="main-menu-link" href="/#/chordLibrary">
 				<button role="button" class="main-menu-btn">Chord Finder</button>
 			</a>
 		</nav>
@@ -18,7 +18,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
   <ul class="pager">
 		<button ng-controller="authController as authCtrl" role="button" class="btn btn-default">
-			<a href="/#/login" ng-click="authCtrl.authObj.$unauth()">Logout</a>
+			<a href="/#/login" ng-click="authCtrl.logout()">Logout</a>
 		</button>
 	</ul>
 </nav>
