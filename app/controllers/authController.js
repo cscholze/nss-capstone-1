@@ -56,6 +56,10 @@ app.controller("authController", ["$firebaseAuth", "$location",
     // Logout user
     vm.logout = function() {
     	console.log("calling logout...");
+    	sessionStorage.clear();
+    	console.log("sessionStorage", sessionStorage);
+    	localStorage.clear();
+    	console.log("localStorage", localStorage);
     };
   }
 ]);

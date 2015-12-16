@@ -9,11 +9,13 @@ app.controller("createChartController",
 
 /************ Setup seesion storage to cache charts befored being save *************/
 var hasSessStorage = false;
-// Check for browser storage support
+// Check for browser storage support and setup newChart model
 if(typeof(Storage) !== "undefined") {
     // Code for localStorage/sessionStorage.
     hasStorage = true;
     console.log("hasStorage", hasStorage);
+    console.log("sessionStorage", sessionStorage);
+    console.log("localStorage", localStorage);
     vm.newChart = {
       title: sessionStorage.draftTitle,
       artist: sessionStorage.draftArtist,
@@ -32,16 +34,6 @@ if(typeof(Storage) !== "undefined") {
       preText: ""
     };
 }
-
-/************ newChart model **************/
-
-    // reload draft changes from session storage if it exists
-    console.log("reloading previous work");
-    if(hasStorage && localStorage.chartDraft) {
-      vm.newChart.title = localStorage.draftTitle;
-      vm.newChart.artist = localStorage.draftArtist;
-      vm.newChart.preText = localStorage.draftPreText;
-    }
 
 /********* saveChart method ************/
   	vm.saveChart = function() {
@@ -72,10 +64,11 @@ if(typeof(Storage) !== "undefined") {
 /************ autoSave method *************/
     vm.autoSave = function() {
       console.log("auto saving your work...");
-      if(hasStorage) {
+      if( hasStorage ) {
         sessionStorage.draftTitle = vm.newChart.title;
         sessionStorage.draftArtist = vm.newChart.Artist;
         sessionStorage.draftPreText = vm.newChart.preText;
+        console.log("just saved: ", sessionStorage);
       }
       else {
         alert("Your changes will are not being saved!");
