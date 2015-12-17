@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/#/mainMenu">View Charts</a>
+      <a class="navbar-brand" href="/#/mainMenu" ng-click="viewChartsCtrl.saveCurrChartView()">View Charts</a>
     </div>
 
 
@@ -32,8 +32,8 @@
 
       <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="/#/viewCharts">View Charts <span class="sr-only">(current)</span></a></li>
-        <li><a href="/#/createChart">Create Chart</a></li>
-        <li><a href="/#/chordLibrary">Chord Library</a></li>
+        <li><a href="/#/createChart" ng-click="viewChartsCtrl.saveCurrChartView()">Create Chart</a></li>
+        <li><a href="/#/chordLibrary" ng-click="viewChartsCtrl.saveCurrChartView()">Chord Library</a></li>
         <li>
 						<a href="#" ng-controller="authController as authCtrl" ng-click="authCtrl.logout()">Logout</a>
 				</li>

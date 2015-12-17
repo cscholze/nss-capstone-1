@@ -3,6 +3,10 @@ app.controller("viewChartsController", ["$firebaseArray", "$firebaseAuth", "filt
   	// initialize this as vm for view-model to refer to $scope
     var vm = this;
     var currChartIndex = 0;
+    console.log("saveIndex = ", sessionStorage.currChartIndex);
+    if( (typeof(Storage) !== "undefined") && (sessionStorage.currChartIndex) ) {
+      currChartIndex = sessionStorage.currChartIndex;
+    }
 
     // model for search input
     vm.navbarSearch = "";
@@ -121,6 +125,14 @@ app.controller("viewChartsController", ["$firebaseArray", "$firebaseAuth", "filt
         vm.currChart = alphaCharts[currChartIndex];
         console.log("delete success");
       });
+    };
+
+    vm.saveCurrChartView = function() {
+      if( typeof(Storage) !== "undefined" ) {
+        console.log("saving index...", currChartIndex);
+        sessionStorage.currChartIndex = currChartIndex;
+        console.log("sessionStorage.currChartIndex", sessionStorage.currChartIndex);
+      }
     };
   }
 ]);
