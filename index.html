@@ -1,55 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-		<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 	
 
 	<title>nss-capstone</title>
 
+	<!-- bootstrap stylesheets -->
 	<link rel="stylesheet" href="./lib/bower_components/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="./lib/bower_componentds/bootstrap/dist/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="./lib/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+	<!-- <link rel="stylesheet" href="./lib/bower_components/textAngular/dist/textAngular.css"> -->
+	<!-- font-awesome -->
+	<link rel="stylesheet" href="./lib/font-awesome/css/font-awesome.min.css">
+
+	<!-- jtab -->
+  <!-- recommended to avoid security warnings with SVG in IE8 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+  <!-- optional: helpers to preset jtab region heights to avoid rendering jitter -->
+  <link type="text/css" rel="stylesheet" href="./styles/jtab-helper.css"/>
+
+	<!-- custom styles compiled from sass -->
 	<link rel="stylesheet" href="./styles/main.css">
+
+
 </head>
 
-<body>
-	<div id="splash-login" class="container">
-		<h1>Welcome to my guitar chart app!!</h1>
-		<div class="row">
-			<!-- left sidebar -->
-			<div id="splash-sidebar-left" class="col-sm-3">
-			</div>
-			
-			<!-- login form -->
-			<form id="form-login" class="col-sm-6">
-				
-				<!-- user email text input -->
-			  <div class="form-group">
-			    <label for="exampleInputEmail">Email address</label>
-			    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-			  </div>
+<body ng-app="nss-capstone-1">
 
-			  <!-- user passord text input -->
-			  <div class="form-group">
-			    <label for="exampleInputPassword1">Password</label>
-			    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-			  </div>
+	<!-- catch route partials -->
+	<div ng-view></div>
 
-			  <!-- login buttons -->
-			  <div id="btns-login" class="form-group">
-			  <button role="button" class="btn btn-primary">New User</button>
-			  <button role="button" class="btn btn-primary">Login</button>
-			  </div>
-			</form>
-
-			<!-- right sidebar -->
-			<div id="splash-sidebar-left" class="col-sm-3">
-			</div>
-		</div>
-	</div>
-
+	<!-- app scripts -->
 	<script src="./lib/bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="./lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./lib/bower_components/angular/angular.min.js"></script>
+	<script src="./lib/bower_components/angular-route/angular-route.min.js"></script>
+	<script src="./lib/bower_components/firebase/firebase.js"></script>
+	<script src="./lib/bower_components/angularfire/dist/angularfire.min.js"></script>
+	<!-- textAngular dependencies
+	<script src="./lib/bower_components/textAngular/dist/textAngular-rangy.min.js"></script>
+	<script src="./lib/bower_components/textAngular/dist/textAngular-sanitize.min.js"></script>
+	<script src="./lib/bower_components/textAngular/dist/textAngular.min.js"></script>
+	<script src="./lib/bower_components/rangy/rangy-classapplier.min.js"></script>
+	-->
+	<!-- app angular module/config/controllers -->
+	<script src="./app/app.js"></script>
+	<script src="./app/controllers/authController.js"></script>
+	<script src="./app/controllers/mainMenuController.js"></script>
+	<script src="./app/controllers/createChartController.js"></script>
+	<script src="./app/controllers/viewChartsController.js"></script>
+	<!-- jtab dependencies -->
+  <script src="./lib/raphael.js"></script>
+  <script src="./lib/jtab.js"></script>
 </body>
+
 </html>

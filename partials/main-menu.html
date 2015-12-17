@@ -1,0 +1,24 @@
+<div class="container-fluid centered" id="main-menu">
+	<div class="row">
+	<h1 id="menu-title">Main Menu</h1>
+		<nav class="menu-items">
+			<a class="main-menu-link" href="/#/createChart">
+				<button role="button" class="main-menu-btn">Create New Chart</button>
+			</a>
+			<a class="main-menu-link" href="/#/viewCharts">
+				<button role="button" class="main-menu-btn">View Charts</button>
+			</a>
+			<a class="main-menu-link" href="/#/chordLibrary">
+				<button role="button" class="main-menu-btn">Chord Finder</button>
+			</a>
+		</nav>
+	</div>
+</div>	
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <ul class="pager">
+		<button ng-controller="authController as authCtrl" role="button" class="btn btn-default">
+			<a href="/#/login" ng-click="authCtrl.logout()">Logout</a>
+		</button>
+	</ul>
+</nav>
