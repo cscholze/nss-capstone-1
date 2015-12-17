@@ -1,5 +1,5 @@
-app.controller("viewChartsController", ["$firebaseArray", "$firebaseAuth", "filterFilter",
-  function($firebaseArray, $firebaseAuth, filterFilter) {
+app.controller("viewChartsController", ["$firebaseArray", "$firebaseAuth", "filterFilter", "$location",
+  function($firebaseArray, $firebaseAuth, filterFilter, $location) {
   	// initialize this as vm for view-model to refer to $scope
     var vm = this;
     var currChartIndex = 0;
@@ -19,12 +19,19 @@ app.controller("viewChartsController", ["$firebaseArray", "$firebaseAuth", "filt
       console.log("Logged out");
     }
 
+    // listen to firebase reference for changes
+    chartsRef.on("child_removed", function(snapshot) {
+
+    });
+
     // Query firebase for user charts and create firebase array of user charts
     var userChartsQuery = chartsRef.orderByChild("createdBy").equalTo(authData.uid);
     var userCharts = $firebaseArray(userChartsQuery);
     vm.chartTitles = [];
     var alphaCharts = [];
 
+
+    // initialize user charts and data when array loads
     userCharts.$loaded(
       function(charts) {
         // ORDER ALPHABETCALLY HERE BEFORE CONSTRUCTING TITLES ARRAY
@@ -40,6 +47,7 @@ app.controller("viewChartsController", ["$firebaseArray", "$firebaseAuth", "filt
         console.error("Loading Charts Error:", error);
       });
 
+
     // Display next user chart by incrementing firebase array index
     vm.getNext = function() {
       currChartIndex += 1;
@@ -49,6 +57,7 @@ app.controller("viewChartsController", ["$firebaseArray", "$firebaseAuth", "filt
       vm.currChart = alphaCharts[currChartIndex];
     };
 
+
     // Display previous user chart by decrementing firebase array index
     vm.getPrev = function() {
       currChartIndex -= 1;
@@ -57,6 +66,7 @@ app.controller("viewChartsController", ["$firebaseArray", "$firebaseAuth", "filt
       }
       vm.currChart = alphaCharts[currChartIndex];
     };
+
 
     // set current chart index to that of title from user input in search bar
     vm.setCurrChart = function() {
@@ -68,6 +78,7 @@ app.controller("viewChartsController", ["$firebaseArray", "$firebaseAuth", "filt
         vm.navbarSearch = "";
       }
     };
+
 
     // alphabetize array of objects by property
     var alphaObjArray = function(input, attribute) {
@@ -88,6 +99,28 @@ app.controller("viewChartsController", ["$firebaseArray", "$firebaseAuth", "filt
         return alc > blc ? 1 : alc < blc ? -1 : 0;
       });
       return array;
+    };
+
+
+    vm.deleteChart = function() {
+      console.log("deleting chart $id...", vm.currChart.$id);
+      console.log("deleting currChart", vm.currChart);
+      // delete item from firebase array
+      userCharts.$remove(vm.currChart).then(function(ref) {
+        // remove song title from search data-list
+        vm.chartTitles.splice(currChartIndex,1);
+        // remove chart from viewer
+        alphaCharts.splice(currChartIndex,1);
+        // reset chart index if out of bounds
+        if (currChartIndex > alphaCharts.length-1) {
+          currChartIndex = alphaCharts.length-1;
+        }
+        else if (currChartIndex < 0) {
+           currChartIndex = (alphaCharts.length-1);
+        }
+        vm.currChart = alphaCharts[currChartIndex];
+        console.log("delete success");
+      });
     };
   }
 ]);
