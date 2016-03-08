@@ -18,14 +18,14 @@
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
           <div class="input-group">
-            <input ng-model="viewChartsCtrl.navbarSearch" ng-change="viewChartsCtrl.setCurrChart()" type="text" id="search-bar" class="form-control" list="search-titles" autocomplete="off">
-            <span class="input-group-addon" ng-click="viewChartsCtrl.setCurrChart()">
+            <input ng-model="viewChartsCtrl.navbarSearch" ng-change="viewChartsCtrl.setCurrChart()" type="text" id="search-bar" class="form-control search-bar" list="search-titles" autocomplete="off">
+            <span class="input-group-addon" ng-click="viewChartsCtrl.setCurrChart2($index)">
               <i class="fa fa-search"></i>
             </span>
           </div>
             <!-- populate drop-down with filtered titles as user types -->  
             <datalist id="search-titles">
-              <option ng-repeat="title in viewChartsCtrl.chartTitles" value="{{title}}">
+              <option ng-repeat="title in viewChartsCtrl.chartTitles track by $index" value="{{title}}">
             </datalist>
         </div>
       </form>
@@ -33,18 +33,30 @@
       <ul class="nav navbar-nav navbar-right">
         <li class="active"><a href="/#/viewCharts">View Charts <span class="sr-only">(current)</span></a></li>
         <li><a href="/#/createChart" ng-click="viewChartsCtrl.saveCurrChartView()">Create Chart</a></li>
+        <li><a href="/#/findChart" ng-click="viewChartsCtrl.saveCurrChartView()">Find Chart</a></li>
         <li><a href="/#/chordLibrary" ng-click="viewChartsCtrl.saveCurrChartView()">Chord Library</a></li>
         <li>
-						<a href="#" ng-controller="authController as authCtrl" ng-click="authCtrl.logout()">Logout</a>
+						<a href="#" ng-controller="authController as authCtrl" ng-click="authCtrl.logout()">|&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>
 				</li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
+<!-- Auto Scroll toolbar -->
+      <div id="scrollControl">
+        <ul>
+          <li><i class="fa fa-backward" ng-click="viewChartsCtrl.scrollSlower()"></i></li>
+          <li><i class="fa fa-pause" ng-click="viewChartsCtrl.pauseScroll()"></i></li>
+          <li>scroll {{101 - viewChartsCtrl.scrollSpeed}}%</li>
+          <li ng-click="viewChartsCtrl.startScroll()"><i class="fa fa-play"></i></li>
+          <li><i class="fa fa-forward" ng-click="viewChartsCtrl.scrollFaster()"></i></li>
+        </ul>
+      </div>
+
 <div class="container view-chart-container">
   <div class="row text-center">
-    <div class="col-md-8">
+    <div class="col-md-7">
       <h2>{{viewChartsCtrl.currChart.title}}</h2>
       <h3>{{viewChartsCtrl.currChart.artist}}</h3>
     </div>

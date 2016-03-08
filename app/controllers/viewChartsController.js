@@ -23,11 +23,6 @@ app.controller("viewChartsController", ["$firebaseArray", "$firebaseAuth", "filt
       console.log("Logged out");
     }
 
-    // listen to firebase reference for changes
-    chartsRef.on("child_removed", function(snapshot) {
-
-    });
-
     // Query firebase for user charts and create firebase array of user charts
     var userChartsQuery = chartsRef.orderByChild("createdBy").equalTo(authData.uid);
     var userCharts = $firebaseArray(userChartsQuery);
@@ -83,6 +78,9 @@ app.controller("viewChartsController", ["$firebaseArray", "$firebaseAuth", "filt
       }
     };
 
+    vm.setCurrChart2 = function(index) {
+      console.log("index", index); 
+    };
 
     // alphabetize array of objects by property
     var alphaObjArray = function(input, attribute) {
@@ -134,5 +132,44 @@ app.controller("viewChartsController", ["$firebaseArray", "$firebaseAuth", "filt
         console.log("sessionStorage.currChartIndex", sessionStorage.currChartIndex);
       }
     };
+
+
+/********* AUTO SCROLL *************/
+    vm.scrollSpeed = 51;
+    var scrolling = false;
+
+    var scrollAuto = function() {
+      if (scrolling) {
+        console.log("autoScrolling...speed = ", vm.scrollSpeed);
+        window.scrollBy(0,1);
+        scrolldelay = setTimeout(scrollAuto, vm.scrollSpeed);
+      }
+    };
+
+    vm.startScroll = function() {
+      console.log("starting scroll...", vm.scrollSpeed);
+      scrolling = true;
+      scrollAuto();
+    };
+
+    vm.pauseScroll = function() {
+      console.log("stopping scroll...");
+      scrolling = false;
+    };
+
+    vm.scrollSlower = function() {
+      console.log("speeding up scroll...");
+      vm.scrollSpeed += 5;
+      if (vm.scrollSpeed > 100)
+        vm.scrollSpeed = 101;
+    };
+
+    vm.scrollFaster = function() {
+      console.log("speeding up scroll...");
+      vm.scrollSpeed -= 5;
+      if (vm.scrollSpeed < 1)
+        vm.scrollSpeed = 1;
+    };
+
   }
 ]);

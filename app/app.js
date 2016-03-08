@@ -26,6 +26,11 @@ app.config(['$routeProvider','$provide',
         controller: 'viewChartsController',
         controllerAs: 'viewChartsCtrl'
       })
+      .when('/findChart', {
+        templateUrl: 'partials/find-chart.html',
+        controller: 'findChartController',
+        controllerAs: 'findChartCtrl'
+      })
       .when('/chordLibrary', {
         templateUrl: 'partials/chord-library.html',
         controller: '',
