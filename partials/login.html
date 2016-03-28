@@ -1,0 +1,36 @@
+<div id="splash-login" class="container">
+	<h1 class="text-center">CHART-IT</h1>
+	<div class="row">
+		
+		<!-- left sidebar -->
+		<div id="splash-sidebar-left" class="col-sm-3">
+		</div>
+		
+		<!-- login form -->
+		<form id="form-login" class="col-sm-6">
+			
+			<!-- user email text input -->
+		  <div class="form-group">
+		    <label for="user-email">Email address</label>
+		    <input ng-model="authCtrl.userEmail" type="email" class="form-control" id="user-email" placeholder="Email">
+		  </div>
+
+		  <!-- user password text input -->
+		  <div class="form-group">
+		    <label for="user-password">Password</label>
+		    <input ng-model="authCtrl.userPassword" type="password" class="form-control" id="user-password" placeholder="Password">
+		  </div>
+
+		  <!-- login buttons -->
+		  <div id="btns-login" class="form-group text-center">
+		  <button ng-click="authCtrl.registerNewUser()" role="button" class="btn btn-default">New User</button>
+		  <button ng-click="authCtrl.loginUser()" role="button" class="btn btn-default">Login</button>
+		  </div>
+		  <div id="authErrorCatcher">{{authCtrl.authError}}</div>
+		</form>
+
+		<!-- right sidebar -->
+		<div id="splash-sidebar-left" class="col-sm-3">
+		</div>
+	</div>
+</div>

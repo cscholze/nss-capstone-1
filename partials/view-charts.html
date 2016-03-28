@@ -1,0 +1,120 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-nav" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/#/mainMenu" ng-click="viewChartsCtrl.saveCurrChartView()">View Charts</a>
+    </div>
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="top-nav">
+      <!-- chart title search bar in nav -->
+      <form class="navbar-form navbar-left" role="search">
+        <div class="form-group">
+          <div class="input-group">
+            <input ng-model="viewChartsCtrl.navbarSearch" ng-change="viewChartsCtrl.setCurrChart()" type="text" id="search-bar" class="form-control search-bar" list="search-titles" autocomplete="off">
+            <span class="input-group-addon" ng-click="viewChartsCtrl.setCurrChart2($index)">
+              <i class="fa fa-search"></i>
+            </span>
+          </div>
+            <!-- populate drop-down with filtered titles as user types -->  
+            <datalist id="search-titles">
+              <option ng-repeat="title in viewChartsCtrl.chartTitles track by $index" value="{{title}}">
+            </datalist>
+        </div>
+      </form>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="active"><a href="/#/viewCharts">View Charts <span class="sr-only">(current)</span></a></li>
+        <li><a href="/#/createChart" ng-click="viewChartsCtrl.saveCurrChartView()">Create Chart</a></li>
+        <li><a href="/#/findChart" ng-click="viewChartsCtrl.saveCurrChartView()">Find Chart</a></li>
+        <li><a href="/#/chordLibrary" ng-click="viewChartsCtrl.saveCurrChartView()">Chord Library</a></li>
+        <li>
+						<a href="#" ng-controller="authController as authCtrl" ng-click="authCtrl.logout()">|&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>
+				</li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<!-- Auto Scroll toolbar -->
+      <div id="scrollControl">
+        <ul>
+          <li><i class="fa fa-backward" ng-click="viewChartsCtrl.scrollSlower()"></i></li>
+          <li><i class="fa fa-pause" ng-click="viewChartsCtrl.pauseScroll()"></i></li>
+          <li>scroll {{101 - viewChartsCtrl.scrollSpeed}}%</li>
+          <li ng-click="viewChartsCtrl.startScroll()"><i class="fa fa-play"></i></li>
+          <li><i class="fa fa-forward" ng-click="viewChartsCtrl.scrollFaster()"></i></li>
+        </ul>
+      </div>
+
+<div class="container view-chart-container">
+  <div class="row text-center">
+    <div class="col-md-7">
+      <h2>{{viewChartsCtrl.currChart.title}}</h2>
+      <h3>{{viewChartsCtrl.currChart.artist}}</h3>
+    </div>
+  </div>
+
+  <div class="row" id="displayed-chart">
+    <div class="col-md-8">
+      <pre>{{viewChartsCtrl.currChart.preText}}</pre>
+    </div>
+
+    <div id="sidebar-wrapper" class="col-md-4">
+
+    <button id="btn-edit-chart" role="button" class="btn btn-default" ng-click="viewChartsCtrl.deleteChart()">Delete Chart</button>
+      <div class="chord-finder">
+      <h3>Search chord diagrams</h3>
+        <input id="user_notation" type="text" size="40" placeholder="e.g. C Gm F#7 Db">
+        <div id="tab" class="rendered"></div>
+        <script type="text/javascript">
+          $('#user_notation').keyup(function(e){
+              console.log("keypress",e);
+             jtab.render($('#tab'),$(this).val());
+          });
+        </script>
+      </div>
+    
+      <h5>Chord Notation</h5>
+      <ul>
+        <li>The root note (A..G) must be uppercase</li>
+        <li>Seperate every item with spaces</li>
+        <li># indicates sharp</li>
+        <li>b (lowercase B) indicates flat</li>
+        <li>m (lowercase) indicates minor</li>
+        <li>maj (lowercase) indicates major</li>
+        <li>sus (lowercase) indicates suspended</li>
+        <li>dim (lowercase) indicates diminished</li>
+        <li>aug (lowercase) indicates augmented</li>
+        <li>add (lowercase) indicates extensions</li>
+      </ul>
+      <ul>
+        <li>Variations on the root chord: m, 6, m6, 69, 7, m7, maj7, 7b5, 7#5, m7b5, 7b9, 9, m9, maj9, add9, 13, sus2, sus4, dim, dim7, aug</li>
+      </ul>
+      <ul>
+        <li>Search supports CAGED major chord notation. This is a convenient method for indicating major chords at various positions on the fretboard.</li>
+        <li>May be applied to all chords</li>
+        <li>Position is indicated by following the chord with a colon and the position number 1,2,3...</li>
+        <li>e.g. C:1, Cm7:5, Eaug:2, Dsus2:3</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <ul class="pager">
+		<button role="button" class="btn btn-default btn-sm" ng-click="viewChartsCtrl.getPrev()">
+			<span class="glyphicon glyphicon-arrow-left"></span>
+		</button>
+		<button role="button" class="btn btn-default btn-sm" ng-click="viewChartsCtrl.getNext()">
+			<span class="glyphicon glyphicon-arrow-right"></span>
+		</button>
+  </ul>
+</nav>

@@ -1,0 +1,172 @@
+body {
+  padding-bottom: 70px;
+  padding-top: 50px;
+  background-color: #222;
+  color: black; }
+
+.btn a {
+  text-decoration: none;
+  color: black; }
+
+.navbar-fixed-bottom {
+  height: 50px; }
+
+.pager {
+  margin-top: 10px; }
+
+.pager button {
+  margin-right: 30px; }
+
+/****************************************************/
+#splash-login {
+  background-color: black;
+  font-size: 1.5em;
+  color: white;
+  border-radius: 20px;
+  background-image: url("http://mk.dstv.com/files/2012/08/redbul.jpg");
+  width: 90%;
+  height: auto; }
+
+#btns-login button {
+  text-align: center;
+  margin: 10px; }
+
+#form-login {
+  padding: 10px 30px; }
+
+.form-group input {
+  font-size: 1.5em;
+  padding: 30px 5px; }
+
+/****************************************************/
+#main-menu {
+  text-align: center;
+  font-size: 1.5em;
+  display: block;
+  color: #eee; }
+
+#menu-title {
+  font-size: 2em;
+  margin-top: -50px;
+  background-color: #bbb;
+  color: #222;
+  padding: 10px; }
+
+.menu-items {
+  margin-top: 30px; }
+
+.main-menu-btn {
+  border-radius: 10px;
+  color: #222;
+  max-width: 400px;
+  min-width: 360px;
+  height: 100px; }
+
+.main-menu-btn:hover {
+  background-color: #444;
+  color: #eee; }
+
+.main-menu-link {
+  display: block; }
+
+/****************************************************/
+.view-chart-container {
+  font-size: 0.8em;
+  color: white; }
+
+#displayed-chart {
+  min-width: 560px; }
+
+#chord-finder {
+  color: black; }
+
+#user_notation {
+  color: black; }
+
+#tab {
+  color: black;
+  background-color: white;
+  width: 85%; }
+
+#search-bar {
+  height: 100%;
+  font-size: 1em;
+  padding: 5px; }
+
+#scrollControl {
+  position: fixed;
+  right: 20px;
+  background-color: #999;
+  z-index: 200; }
+
+#scrollControl ul {
+  list-style-type: none;
+  padding: 0;
+  display: inline; }
+
+#scrollControl li {
+  display: inline;
+  padding: 2px; }
+
+#scrollControl li i:hover {
+  cursor: pointer;
+  color: white; }
+
+/****************************************************/
+.create-chart-container {
+  margin-top: 20px;
+  min-width: 560px; }
+
+.chart-info-form input {
+  max-width: 560px;
+  min-width: 560px;
+  margin: 6px;
+  border-radius: 5px;
+  height: 40px;
+  font-size: 1.2em; }
+
+.create-chart-pretext {
+  max-width: 570px;
+  min-width: 570px;
+  margin: 20px auto;
+  padding: 5px;
+  font-size: 1em; }
+
+.create-chart-textarea {
+  max-width: 560px;
+  min-width: 300px;
+  resize: none;
+  margin: -16px 0 0 -1px;
+  padding: 0; }
+
+/******************************************************/
+#usr-search {
+  height: 100%;
+  font-size: 1em;
+  padding: 5px; }
+
+#results-list {
+  color: white;
+  font-size: 1.1em;
+  margin: 10px auto;
+  margin-left: 20%; }
+
+#results-list td {
+  padding: 3px 10px; }
+
+#results-list tbody tr:hover {
+  background-color: black;
+  cursor: pointer; }
+
+#results-list a:hover {
+  text-decoration: none;
+  color: white; }
+
+#results-list thead {
+  font-size: 1.2em; }
+
+/*****************************************************/
+#chart {
+  text-align: center; }
+
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,90 @@
+<!-- top navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-nav" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ng-click="createCtrl.autoSave()" href="/#/mainMenu">Find Chart</a>
+    </div>
+
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="top-nav">
+      <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <div class="input-group">
+              <input ng-model="findChartCtrl.usrSearch" type="text" id="usr-search" class="form-control" autocomplete="off">
+              <span class="input-group-addon">
+                <i class="fa fa-search"></i>
+              </span>
+            </div>
+          </div>
+        </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/#/viewCharts" ng-click="createCtrl.autoSave()">View Charts </a>
+        </li>
+        <li><a href="/#/createChart">Create Chart</a></li>
+        <li class="active">
+          <a href="/#/findChart" ng-click="createCtrl.autoSave()">Find Chart <span class="sr-only">(current)</span></a>
+        </li>
+        <li>
+          <a href="/#/chordLibrary" ng-click="createCtrl.autoSave()">Chord Library</a>
+        </li>
+        <li>
+						<a href="#" ng-controller="authController as authCtrl" ng-click="authCtrl.logout()">|&nbsp;&nbsp;&nbsp;&nbsp;Logout</a>
+				</li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div  class="container-fluid">
+	<div class="row">
+		<div class="" id="results-list">
+			<!-- generate list of user charts -->
+					<!-- link triggers modal with chart preview -->
+					<table>
+						<thead>
+							<tr>
+								<td>Artist</td>
+								<td>Title</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="chart in findChartCtrl.allCharts | orderBy:'artist' | filter: findChartCtrl.usrSearch" ng-click="findChartCtrl.getChartPrev(chart)" data-toggle="modal" data-target="#modalPreview">
+								<td><a>{{chart.artist}}</a></td>
+								<td><a>{{chart.title}}</a></td>
+							</tr>
+						</tbody>
+					</table>
+		</div>
+	</div>
+</div>
+
+
+<!-------------     chart preview modal      ------------>
+<!-- Modal -->
+<div class="modal fade" id="modalPreview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="previewTitle">{{findChartCtrl.chartToPrev.title}}</h4>
+        <h5 class="modal-title" id="previewArtist">{{findChartCtrl.chartToPrev.artist}}</h5>
+      </div>
+      <div class="modal-body">
+				<pre>{{findChartCtrl.chartToPrev.preText}}</pre>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="findChartCtrl.addChart()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
